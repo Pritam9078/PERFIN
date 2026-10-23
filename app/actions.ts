@@ -44,7 +44,16 @@ export async function signupAction(input: unknown): Promise<ActionResult> {
     email: p.data.email, password: p.data.password,
     options: { data: { full_name: p.data.full_name }, emailRedirectTo: `${await siteUrl()}/auth/callback?next=/dashboard` },
   });
-  if (error) return fail(error.status === 429 ? 'Too many attempts. Wait a minute and try again.' : error.message.includes('registered') ? 'An account with this email already exists.' : 'We could not create your account. Try again.');
+  if (error) {
+    console.error('Signup error:', error);
+    return fail(
+      error.status === 429
+        ? 'Too many attempts. Wait a minute and try again.'
+        : error.message.includes('already registered') || error.message.includes('User already registered')
+        ? 'An account with this email already exists.'
+        : error.message || 'We could not create your account. Try again.'
+    );
+  }
   if (data.session) redirect('/dashboard');
   return success(undefined, 'Check your email to confirm your account, then sign in.');
 }
