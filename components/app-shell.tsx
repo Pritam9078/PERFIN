@@ -30,8 +30,8 @@ export function AppShell({ name, alerts, children }: { name: string; alerts: Bud
         <Logo href="/dashboard" />
         <nav aria-label="Primary" className="glass hidden rounded-full p-1.5 md:flex">
           {NAV.map(({ href, label, icon: Icon }) => (
-            <Link key={href} href={href} aria-current={active(href) ? 'page' : undefined}
-              className={cn('flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors', active(href) ? 'bg-lime text-ink' : 'text-white/60 hover:text-white')}>
+            <Link key={href} href={href} prefetch={true} aria-current={active(href) ? 'page' : undefined}
+              className={cn('flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-150 active:scale-95 touch-manipulation', active(href) ? 'bg-lime text-ink shadow-sm' : 'text-white/60 hover:text-white hover:bg-white/5')}>
               <Icon className="h-4 w-4" aria-hidden />{label}
             </Link>
           ))}
@@ -95,8 +95,8 @@ export function AppShell({ name, alerts, children }: { name: string; alerts: Bud
       {/* Mobile nav */}
       <nav aria-label="Primary mobile" className="glass fixed inset-x-3 bottom-3 z-40 flex justify-around rounded-full p-1.5 md:hidden">
         {NAV.map(({ href, label, icon: Icon }) => (
-          <Link key={href} href={href} aria-current={active(href) ? 'page' : undefined} aria-label={label}
-            className={cn('grid h-11 w-11 place-items-center rounded-full', active(href) ? 'bg-lime text-ink' : 'text-white/60')}>
+          <Link key={href} href={href} prefetch={true} aria-current={active(href) ? 'page' : undefined} aria-label={label}
+            className={cn('grid h-11 w-11 place-items-center rounded-full transition-all duration-150 active:scale-90 touch-manipulation', active(href) ? 'bg-lime text-ink shadow-sm' : 'text-white/60 active:bg-white/10')}>
             <Icon className="h-5 w-5" />
           </Link>
         ))}
@@ -108,13 +108,13 @@ export function AppShell({ name, alerts, children }: { name: string; alerts: Bud
 function QuickActions() {
   return (
     <DM.Root>
-      <DM.Trigger className="fixed bottom-24 right-4 z-40 grid h-14 w-14 place-items-center rounded-full bg-lime text-ink shadow-lift transition-transform hover:scale-105 md:bottom-8 md:right-8" aria-label="Quick add">
+      <DM.Trigger className="fixed bottom-24 right-4 z-40 grid h-14 w-14 place-items-center rounded-full bg-lime text-ink shadow-lift transition-transform active:scale-90 hover:scale-105 md:bottom-8 md:right-8 cursor-pointer touch-manipulation" aria-label="Quick add">
         <Plus className="h-6 w-6" />
       </DM.Trigger>
       <DM.Portal>
-        <DM.Content side="top" align="end" sideOffset={10} className="glass z-50 w-52 rounded-2xl p-2">
-          <DM.Item asChild><Link href="/transactions/new?type=expense" className="flex items-center gap-2 rounded-xl px-3 py-3 text-sm font-semibold outline-none data-[highlighted]:bg-white/5"><TrendingDown className="h-4 w-4 text-coral" />Add expense</Link></DM.Item>
-          <DM.Item asChild><Link href="/transactions/new?type=income" className="flex items-center gap-2 rounded-xl px-3 py-3 text-sm font-semibold outline-none data-[highlighted]:bg-white/5"><TrendingUp className="h-4 w-4 text-lime" />Add income</Link></DM.Item>
+        <DM.Content side="top" align="end" sideOffset={10} className="glass z-50 w-52 rounded-2xl p-2 animate-in fade-in zoom-in-95 duration-100">
+          <DM.Item asChild><Link href="/transactions/new?type=expense" prefetch={true} className="flex items-center gap-2 rounded-xl px-3 py-3 text-sm font-semibold outline-none active:scale-[0.98] data-[highlighted]:bg-white/5 transition-transform"><TrendingDown className="h-4 w-4 text-coral" />Add expense</Link></DM.Item>
+          <DM.Item asChild><Link href="/transactions/new?type=income" prefetch={true} className="flex items-center gap-2 rounded-xl px-3 py-3 text-sm font-semibold outline-none active:scale-[0.98] data-[highlighted]:bg-white/5 transition-transform"><TrendingUp className="h-4 w-4 text-lime" />Add income</Link></DM.Item>
         </DM.Content>
       </DM.Portal>
     </DM.Root>

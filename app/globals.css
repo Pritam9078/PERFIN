@@ -40,6 +40,20 @@ html.light body {
 
 ::selection { background: #e2ff1f; color: #0a0a0a; }
 
+/* Touch & tap responsiveness */
+html, body {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Instant active click tactile response */
+button:active:not(:disabled),
+a:active:not([aria-disabled="true"]),
+[role="button"]:active:not([aria-disabled="true"]) {
+  transform: scale(0.98);
+  transition-duration: 80ms;
+}
+
 /* Visible keyboard focus everywhere */
 :focus-visible { outline: 2px solid #e2ff1f; outline-offset: 2px; border-radius: 10px; }
 

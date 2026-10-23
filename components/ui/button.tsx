@@ -5,14 +5,14 @@ import { Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const variants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-semibold transition-colors disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-semibold transition-all duration-150 active:scale-[0.97] active:brightness-95 select-none touch-manipulation cursor-pointer disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
-        primary: 'bg-lime text-ink hover:bg-[#f0ff6a]',
-        secondary: 'bg-raised text-white border border-line hover:bg-[#242424]',
-        ghost: 'text-white/80 hover:bg-white/5 hover:text-white',
-        danger: 'bg-coral/15 text-coral border border-coral/30 hover:bg-coral/25',
+        primary: 'bg-lime text-ink hover:bg-[#f0ff6a] active:bg-[#d8f020] shadow-sm',
+        secondary: 'bg-raised text-white border border-line hover:bg-[#242424] active:bg-[#1a1a1a]',
+        ghost: 'text-white/80 hover:bg-white/5 hover:text-white active:bg-white/10',
+        danger: 'bg-coral/15 text-coral border border-coral/30 hover:bg-coral/25 active:bg-coral/35',
       },
       size: { sm: 'h-9 px-4', md: 'h-11 px-5', icon: 'h-10 w-10' },
     },
